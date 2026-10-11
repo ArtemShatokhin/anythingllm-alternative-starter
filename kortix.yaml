@@ -1,0 +1,29 @@
+# kortix.yaml — one repo that is the company.
+# Kortix is the open-source AI Operating System: agents, skills, memory and
+# connectors are files in one git repo you own. This manifest is a starting
+# point — adapt it to your setup. Full reference: https://kortix.com/docs
+version: 2
+
+# The image every session boots into. A session runs an agent in an isolated
+# sandbox on its own branch; its work lands as a change request.
+image: kortix/base
+
+# Connectors the repo holds. Wire up the tools your company already runs on
+# (3,000+ apps, plus MCP, OpenAPI, Postman, GraphQL and raw HTTP), then scope
+# which agent may touch which one.
+connectors:
+  - github
+  - slack
+
+# Agents and skills, as markdown files.
+agents:
+  - agents/company-knowledge.md
+
+# Triggers start work with no one asking. Add schedules or signed webhooks
+# once the agent is doing a job you trust it to run.
+triggers: []
+
+# Rule each tool call: allow, ask, or block — down to the arguments it was
+# given. Default is deny; anything the agent may not touch stays blocked.
+permissions:
+  default: ask
